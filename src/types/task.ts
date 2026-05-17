@@ -1,7 +1,13 @@
-export type Task = {
+export type TaskCategory =
+  | "health"
+  | "deep-work"
+  | "digital-detox"
+  | "night-routine"
+  | "college";
+
+export interface Task {
   id: string;
   title: string;
   completed: boolean;
-  createdAt: string;
-  completedAt?: string;
-};
+  category: TaskCategory;
+}

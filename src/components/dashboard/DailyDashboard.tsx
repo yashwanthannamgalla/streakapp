@@ -31,6 +31,17 @@ export function DailyDashboard({ date }: DailyDashboardProps) {
   } = useDailyData(dateKey);
 
   const statusLabel = getCompletionLabel(day.completion, day.tasks.length);
+  const groupedTasks = day.tasks.reduce((groups, task) => {
+  const category = task.category || "deep-work";
+
+  if (!groups[category]) {
+    groups[category] = [];
+  }
+
+  groups[category].push(task);
+
+  return groups;
+}, {} as Record<string, typeof day.tasks>);
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
